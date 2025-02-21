@@ -1,5 +1,73 @@
- EcoTrack: Smart Waste Management System
+# EcoTrack: Smart Waste Management System
 
+This initial progress has two current versions.
+
+## PY Version
+This is the backend for the EcoTrack project, implemented in Python using SQLite. It provides a command-line interface for user authentication, waste tracking, EcoPoints management, and waste collection scheduling.
+
+---
+
+## Table of Contents
+- [Features](#features)
+- [Running the Application](#running-the-application)
+- [Database Schema](#database-schema)
+- [Additional Notes](#additional-notes)
+
+---
+
+## Features
+### User Registration
+- Allows users and admins to register.
+
+### User Login
+- Secure login for users.
+
+### Waste Disposal Tracking
+- Input waste type and weight.
+- System determines recyclability.
+- Tracks recycled and non-recycled trash amounts.
+
+### EcoPoints System
+- Earn points based on recyclable waste.
+- Redeem points for vouchers.
+- View EcoPoints balance.
+
+### Waste Collection Scheduling
+- View upcoming waste collection schedules.
+- Check collection type (Recyclable or Non-Recyclable).
+
+### Waste Statistics
+- View lifetime recycled trash amount.
+- View total current trash amount.
+
+---
+
+## Running the Application
+To start the program, run:
+```sh
+python UserSideFeatures(version1).py
+```
+
+---
+
+## Database Schema
+The database consists of the following tables:
+- `users` (User authentication and roles)
+- `waste_tracking` (Logged waste disposal records)
+- `eco_points` (Points system and redemption history)
+- `waste_schedule` (Scheduled collection times)
+
+---
+
+## Additional Notes
+- The program uses a command-line interface for now.
+- Future versions will include a graphical user interface (GUI).
+
+
+---
+
+
+## JS Version
 This is the backend for the EcoTrack project. It is built with Node.js, Express, and MongoDB and implements user authentication with JWT.
 
 Table of Contents
