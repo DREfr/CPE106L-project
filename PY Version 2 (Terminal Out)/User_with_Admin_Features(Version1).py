@@ -287,9 +287,6 @@ def user_options(user_id):
         else:
             print("Invalid choice, try again.")
 
-# ─────────────────────────────────────────────────────────────
-#  🚀 COMPANY DASHBOARD
-# ─────────────────────────────────────────────────────────────
 def company_dashboard(company_id, company_name):
     print(f"\n===== {company_name} Dashboard =====")
     
@@ -303,7 +300,7 @@ def company_dashboard(company_id, company_name):
         cursor.execute("SELECT name, cost, stock FROM vouchers WHERE company_id = ? ORDER BY stock ASC LIMIT 1", (company_id,))
         least_voucher = cursor.fetchone()
         
-        print("\n📌 Least Stocked Voucher:")
+        print("\nLeast Stocked Voucher:")
         if least_voucher:
             print(f" - {least_voucher[0]} | Cost: {least_voucher[1]} points | Stock: {least_voucher[2]}")
         else:
@@ -314,7 +311,7 @@ def company_dashboard(company_id, company_name):
                        (company_id, today, current_month))
         today_schedule = cursor.fetchall()
         
-        print("\n📌 Collection Schedule for Today:")
+        print("\nCollection Schedule for Today:")
         if today_schedule:
             for s in today_schedule:
                 print(f" - {s[0]}: {s[1]}")
@@ -323,9 +320,6 @@ def company_dashboard(company_id, company_name):
     
     company_menu(company_id, company_name)
 
-# ─────────────────────────────────────────────────────────────
-#  🚀 COMPANY MENU
-# ─────────────────────────────────────────────────────────────
 def company_menu(company_id, company_name):
     while True:
         print("\n===== Manage Company =====")
@@ -345,9 +339,6 @@ def company_menu(company_id, company_name):
         else:
             print("Invalid choice, try again.")
 
-# ─────────────────────────────────────────────────────────────
-#  📌 MANAGE COLLECTION SCHEDULE
-# ─────────────────────────────────────────────────────────────
 def manage_collection_schedule(company_id, company_name):
     while True:
         print("\n===== Manage Collection Schedule =====")
@@ -372,7 +363,6 @@ def manage_collection_schedule(company_id, company_name):
         else:
             print("Invalid choice, try again.")
 
-# View Collection Schedule
 def view_collection_schedule(company_id):
     with connect_db() as conn:
         cursor = conn.cursor()
@@ -386,7 +376,6 @@ def view_collection_schedule(company_id):
         else:
             print("No scheduled collections.")
 
-# Add Collection Schedule
 def add_collection_schedule(company_id):
     time_of_day = input("Enter Time of Day (Morning/Afternoon/Evening): ")
     day_of_week = input("Enter Day of the Week (e.g., Monday): ")
@@ -406,9 +395,8 @@ def add_collection_schedule(company_id):
     
     if month_num is None:
         print("Invalid month entered. Please try again.")
-        return  # Exit function if month is invalid
+        return
 
-    # Ensure day is properly formatted (e.g., "05" instead of "5")
     day = day.zfill(2)
 
     full_date = f"2025-{month_num}-{day}"  # Format YYYY-MM-DD
@@ -421,7 +409,6 @@ def add_collection_schedule(company_id):
         conn.commit()
         print("Collection schedule added successfully!")
 
-# Remove Collection Schedule
 def remove_collection_schedule(company_id):
     day = input("Enter Day to remove (e.g., 5): ")
     month = input("Enter Month to remove (e.g., March): ")
@@ -432,7 +419,6 @@ def remove_collection_schedule(company_id):
         conn.commit()
         print("Collection schedule removed successfully!")
 
-# Search Collection Schedule
 def search_collection_schedule(company_id):
     day = input("Enter Day to search (e.g., 5): ")
     month = input("Enter Month to search (e.g., March): ")
@@ -443,15 +429,12 @@ def search_collection_schedule(company_id):
         results = cursor.fetchall()
 
         if results:
-            print("\n📌 Scheduled Collection:")
+            print("\nScheduled Collection:")
             for r in results:
                 print(f" - {r[1]} ({r[0]}): {r[2]}")
         else:
             print("No collection found for the given date.")
 
-# ─────────────────────────────────────────────────────────────
-#  📌 MANAGE VOUCHERS
-# ─────────────────────────────────────────────────────────────
 def manage_vouchers(company_id, company_name):
     while True:
         print("\n===== Manage Vouchers =====")
@@ -473,7 +456,6 @@ def manage_vouchers(company_id, company_name):
         else:
             print("Invalid choice, try again.")
 
-# View Vouchers
 def view_vouchers(company_id):
     with connect_db() as conn:
         cursor = conn.cursor()
@@ -487,7 +469,6 @@ def view_vouchers(company_id):
         else:
             print("No vouchers available.")
 
-# Add Voucher
 def add_voucher(company_id):
     name = input("Enter Voucher Name: ")
     cost = int(input("Enter Voucher Cost: "))
@@ -499,7 +480,6 @@ def add_voucher(company_id):
         conn.commit()
         print("Voucher added successfully!")
 
-# Remove Voucher
 def remove_voucher(company_id):
     name = input("Enter Voucher Name to Remove: ")
 
@@ -508,7 +488,6 @@ def remove_voucher(company_id):
         cursor.execute("DELETE FROM vouchers WHERE company_id = ? AND name = ?", (company_id, name))
         conn.commit()
         print("Voucher removed successfully!")
-
 
 def main_menu():
     while True:
