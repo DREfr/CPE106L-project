@@ -1,210 +1,110 @@
 # EcoTrack: Smart Waste Management System
 
-This initial progress has two current versions.
+## Overview
 
-## PY Version
-This is the backend for the EcoTrack project, implemented in Python using SQLite. It provides a command-line interface for user authentication, waste tracking, EcoPoints management, and waste collection scheduling.
-
----
-
-## Table of Contents
-- [Features](#features)
-- [Running the Application](#running-the-application)
-- [Database Schema](#database-schema)
-- [Additional Notes](#additional-notes)
-
----
+EcoTrack is a **Streamlit-based** web application designed to promote efficient waste management. The system allows **users** to track waste disposal, earn EcoPoints, and redeem vouchers, while **companies** can manage waste collection schedules and vouchers. The system is backed by an **SQLite database** to store user and company data.
 
 ## Features
-### User Registration
-- Allows users and admins to register.
 
-### User Login
-- Secure login for users.
+### User Features
 
-### Waste Disposal Tracking
-- Input waste type and weight.
-- System determines recyclability.
-- Tracks recycled and non-recycled trash amounts.
+- **User Registration & Login**
+- **User Dashboard** (Track EcoPoints & waste statistics)
+- **Waste Disposal System** (Classify & record waste)
+- **EcoPoints System** (Earn & redeem points)
+- **Waste Collection Schedule** (View & search schedules)
+- **Waste Tracking** (Monitor total and lifetime waste)
 
-### EcoPoints System
-- Earn points based on recyclable waste.
-- Redeem points for vouchers.
-- View EcoPoints balance.
+### Company Features
 
-### Waste Collection Scheduling
-- View upcoming waste collection schedules.
-- Check collection type (Recyclable or Non-Recyclable).
+- **Company Dashboard** (Manage waste collection & vouchers)
+- **Manage Collection Schedule** (View, add, remove, and search collection schedules)
+- **Manage Vouchers** (View, add, and remove vouchers)
 
-### Waste Statistics
-- View lifetime recycled trash amount.
-- View total current trash amount.
+## Installation & Setup
 
----
+### 1. Clone the Repository
 
-## Running the Application
-To start the program, run:
 ```sh
-python UserSideFeatures(version1).py
+git clone https://github.com/yourusername/EcoTrack.git
+cd EcoTrack
 ```
 
----
+### 2. Create a Virtual Environment (Recommended)
 
-## Database Schema
-The database consists of the following tables:
-- `users` (User authentication and roles)
-- `waste_tracking` (Logged waste disposal records)
-- `eco_points` (Points system and redemption history)
-- `waste_schedule` (Scheduled collection times)
-
----
-
-## Additional Notes
-- The program uses a command-line interface for now.
-- Future versions will include a graphical user interface (GUI).
-
-
----
-
-
-## JS Version
-This is the backend for the EcoTrack project. It is built with Node.js, Express, and MongoDB and implements user authentication with JWT.
-
-Table of Contents
-
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Running the Server](#running-the-server)
-- [API Endpoints](#api-endpoints)
-- [Running Tests](#running-tests)
-- [Folder Structure](#folder-structure)
-- [Additional Notes](#additional-notes)
-
-Features
-
-- User Registration: `POST /auth/register`
-- User Login: `POST /auth/login` (returns a JWT token)
-- Protected Routes:  
-  - Admin Dashboard: `GET /admin/dashboard` (accessible only by admin users)
-  - User Profile: `GET /user/profile` (accessible by any logged-in user)
-- **JWT-based authentication** with middleware
-
-Prerequisites
-
-- [Node.js](https://nodejs.org/) installed
-- [MongoDB](https://www.mongodb.com/try/download/community) running locally (or a MongoDB Atlas URI)
-- A code editor such as [VS Code](https://code.visualstudio.com/)
-
-Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/yourusername/ecotrack.git
-   cd ecotrack
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-Configuration
-
-Create a `.env` file in the project root (if it doesn't already exist) and add the following:
-
-```
-MONGO_URI=mongodb://127.0.0.1:27017/ecotrack
-JWT_SECRET=mysecretkey
-PORT=5000
+```sh
+python -m venv venv
 ```
 
-Make sure that MongoDB is running locally on port `27017` (or update `MONGO_URI` accordingly).
+### 3. Activate Virtual Environment
 
-Running the Server
+- **Windows (CMD):**
+  ```sh
+  venv\Scripts\activate
+  ```
+- **Mac/Linux:**
+  ```sh
+  source venv/bin/activate
+  ```
 
-Manually
+### 4. Install Dependencies Manually
 
-To start the server, run:
-
-```bash
-npm start
+```sh
+pip install streamlit sqlite3 datetime
 ```
 
-You should see output similar to:
+### 5. Run the Application
 
-```
-🚀 Server running on port 5000
-✅ MongoDB Connected
-```
-
-Using Nodemon (Auto Restart on Changes)
-
-During development, you can use:
-
-```bash
-npm run dev
+```sh
+streamlit run EcoTrackApp.py
 ```
 
-API Endpoints
+## Dependencies
 
-- Test Route:
-  - `GET /`
-  - _Response:_ `"EcoTrack Server is Running 🚀"`
+Make sure you have the following installed:
 
-- User Registration:
-  - `POST /auth/register`
-  - _Body (JSON):_
-    ```json
-    {
-      "username": "testuser",
-      "password": "password123",
-      "role": "user"
-    }
-    ```
-  - _Response:_ `{ "message": "User registered" }`
+- **Python 3.x**
+- **Streamlit** (for UI)
+- **SQLite3** (for database handling)
+- **Datetime** (for handling timestamps)
 
-- User Login:
-  - `POST /auth/login`
-  - _Body (JSON):_
-    ```json
-    {
-      "username": "testuser",
-      "password": "password123"
-    }
-    ```
-  - _Response:_ `{ "token": "eyJhbGciOi...", "role": "user" }`
+## Database Setup
 
-- Protected Admin Dashboard:
-  - `GET /admin/dashboard`
-  - _Headers:_  
-    `Authorization: Bearer YOUR_JWT_TOKEN`
-  - _Response:_ `{ "message": "Welcome Admin!" }`
+The project uses an **SQLite database (`ecotrackDB.db`)** which is already included. If needed, you can manually inspect or modify the database using:
 
-- Protected User Profile:
-  - `GET /user/profile`
-  - _Headers:_  
-    `Authorization: Bearer YOUR_JWT_TOKEN`
-  - _Response:_ `{ "message": "Welcome user!", "user": { ... } }`
-
-Running Tests
-
-This project uses [Jest](https://jestjs.io/) and [Supertest](https://github.com/visionmedia/supertest) for unit testing.
-
-To run the tests, execute:
-
-```bash
-npm test
+```sh
+sqlite3 ecotrackDB.db
 ```
 
-This command will run all tests located in the `tests/` folder and display a coverage report.
+## How to Use
 
-Additional Notes
+### User Flow
 
-- Ensure MongoDB is running locally. If using MongoDB Compass, verify the connection URI.
-- If you encounter issues, check that the file and folder names (e.g., `routes/auth.js` and `models/User.js`) match exactly.
-- For testing, ensure that your `.env` file is correctly configured and loaded.
+1. **Register/Login** to access features.
+2. **Track & Dispose of Waste**
+3. **Earn EcoPoints** and **redeem vouchers**
+4. **Monitor waste collection schedules**
+
+### Company Flow
+
+1. **Login as a company account**
+2. **Manage waste collection schedules**
+3. **Add/remove vouchers** for users
+
+## Troubleshooting
+
+- If **Streamlit does not run**, ensure the virtual environment is activated.
+- If **database errors occur**, ensure `ecotrackDB.db` is in the project directory.
+- If missing dependencies, reinstall with:
+  ```sh
+  pip install streamlit sqlite3 datetime
+  ```
+
+## License
+
+This project is open-source under the **MIT License**.
+
+## Author
+
+[John Louie Fernando V. Reyes] - [GitHub Profile]
 
