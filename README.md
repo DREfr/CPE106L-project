@@ -104,7 +104,10 @@ sqlite3 ecotrackDB.db
 
 This project is open-source under the **MIT License**.
 
-## Author
+## Authors
 
-[John Louie Fernando V. Reyes] - [GitHub Profile]
+Sean Dela Cruz
+Gino Andre Valencerina Jimenez
+Juan Miguel Ocampo
+John Louie Fernando Reyes
 
