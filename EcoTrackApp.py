@@ -1,9 +1,21 @@
 import streamlit as st
 import sqlite3
-from datetime import datetime
+import gdown
+import os
+
+DB_PATH = "ecotrackDB.db"
+GOOGLE_DRIVE_FILE_ID = "1PNq13Bb96DJnCieol3bwEgq-kG78FsgL"
+
+def download_db():
+    if not os.path.exists(DB_PATH):  
+        url = f"https://drive.google.com/uc?id={GOOGLE_DRIVE_FILE_ID}"
+        gdown.download(url, DB_PATH, quiet=False)
+        print("Database downloaded from Google Drive.")
 
 def connect_db():
-    return sqlite3.connect("ecotrackDB.db")
+    download_db()  
+    return sqlite3.connect(DB_PATH, check_same_thread=False)
+
 
 #------------------LOGIN-------------------
 def create_user(username, password):
