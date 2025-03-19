@@ -4,6 +4,10 @@
 
 EcoTrack is a **Streamlit-based** web application designed to promote efficient waste management. The system allows **users** to track waste disposal, earn EcoPoints, and redeem vouchers, while **companies** can manage waste collection schedules and vouchers. The system is backed by an **SQLite database** to store user and company data.
 
+## Web App Link
+[EcoTrack Web App](https://cpe106l-project-2j9tfprrs8ossxxma9swsn.streamlit.app/)
+
+
 ## Features
 
 ### User Features
